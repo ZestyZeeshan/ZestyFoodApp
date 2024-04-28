@@ -1,4 +1,4 @@
-import Restaurentcard from "./Restaurentcard";
+import Restaurentcard,{withPromoted} from "./Restaurentcard";
 
 import {useState , useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -11,6 +11,7 @@ const Body = () =>{
  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
  const [searchText, setsearchText]= useState("");
+ const RestaurentcardPromoted = withPromoted(Restaurentcard);
  console.log("render");
 
   useEffect(() => {
@@ -82,7 +83,9 @@ const Body = () =>{
           
            {filteredRestaurants.map((restaurants) => <Link key ={restaurants.info.id}
            to={"/restaurants/"+restaurants.info.id}>
-            <Restaurentcard resData ={restaurants}/>
+        
+           {restaurants.info.Promoted ? (<RestaurentcardPromoted resData ={restaurants}/> ):( <Restaurentcard resData ={restaurants}/> )} 
+            
             </Link>)
           
           }

@@ -4,8 +4,7 @@ import { CDN_URL } from "../utils/Constant";
 const Restaurentcard = (props) =>{
     const {resData}=props;
   
-     const{cloudinaryImageId,name,cuisines,avgRating
-      ,costForTwo,sla}= resData?.info;
+     const{cloudinaryImageId,name,cuisines,avgRating,costForTwo,sla}= resData?.info;
   
     return(
       <div className="m-4 p-4 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200"  >
@@ -20,4 +19,17 @@ const Restaurentcard = (props) =>{
       </div>
     );
   };
+
+ export const withPromoted = (Restaurentcard)=>{
+  return (props)=>{
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Promoted</label>
+        <Restaurentcard {...props}/>
+      </div>
+    )
+  }
+ }
+
+
  export default Restaurentcard;  
