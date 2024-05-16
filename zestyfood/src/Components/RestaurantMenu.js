@@ -21,7 +21,13 @@ const RestaurantMenu=()=>{
     //     console.log("jsonnnn",json);
     //     setresInfo(json.data);
     // }
+    
+    //by default pehle ye open hoga ,   Accordian only ata a time open hoga
 
+    //lifting space up in react
+    //higher order n unhigher order component
+    //building accordiance
+    const [showIndex, setshowIndex] = useState(null);
 
     if (resInfo === null) return <Shimmer/> ; 
          
@@ -48,7 +54,12 @@ const RestaurantMenu=()=>{
                 
 
             </ul> */}
-            {categories.map((category) => (<RestaurantCategory key={category?.card?.card.title} data= {category?.card?.card}/>))}
+            {categories.map((category, index) => (<RestaurantCategory key={category?.card?.card.title} 
+            data= {category?.card?.card}
+            showItems={index == showIndex ? true : false}
+            setshowIndex={() => setshowIndex(index)}
+            />
+            ))}
             </div>
             );
             

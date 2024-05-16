@@ -1,13 +1,22 @@
 import { useState } from "react";
 import Itemlist from "./ItemList"
-const RestaurantCategory = ({data}) =>{
 
-const [showItems,setshowItems] = useState(false);
+//noe restaurantcategory is controlled 
+const RestaurantCategory = ({data, showItems, setshowIndex}) =>{
+//restaurantMenu papernt hai and we want to take control as a parents and restaurantCategory ab apni state khud ni decide krega, pareet control rkhe sara
+
+//i dont want parent hi state rkhe only
+
+//bcz y individually handle krre the
+// const [showItems,setshowItems] = useState(false);
 
 const handleClick = () =>{
-    //console.log("Clicked");
-    setshowItems(!showItems);
-}
+//     //console.log("Clicked");
+//     setshowItems(!showItems);
+
+         setshowIndex();  
+
+ }
 
     return (
         <div>
@@ -24,7 +33,7 @@ const handleClick = () =>{
              {showItems && <Itemlist items={data.itemCards}/>}
             </div>
             
-            
+             
         </div>
     )
 }

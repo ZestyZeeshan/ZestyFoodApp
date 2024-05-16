@@ -74,6 +74,11 @@ const Body = () =>{
             >
               Top Rated Restaurent
             </button>
+            <div><a href="http://localhost:8501/">
+    <button>Click Me!</button>
+</a></div>
+
+            <div><button><a></a></button></div>
 
           </div>
           
@@ -87,6 +92,7 @@ const Body = () =>{
            {restaurants.info.Promoted ? (<RestaurentcardPromoted resData ={restaurants}/> ):( <Restaurentcard resData ={restaurants}/> )} 
             
             </Link>)
+            
           
           }
           </div>
