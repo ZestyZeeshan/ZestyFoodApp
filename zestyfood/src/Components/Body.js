@@ -1,9 +1,12 @@
 import Restaurentcard,{withPromoted} from "./Restaurentcard";
-
-import {useState , useEffect } from "react";
+import {useState , useEffect,useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+
+
+
 const Body = () =>{
 
  const  [listofRestaurants,setlistofRestaurants] =useState([]);
@@ -31,10 +34,14 @@ const Body = () =>{
   };
 
   const onlineStatus = useOnlineStatus();
+
   if(onlineStatus===false)
-  return <h1>please connect to internet</h1>
+  return (
+<h1>please connect to internet</h1>
+);
 
 
+//const {loggedInUser,setuserName} = useContext(UserContext);
 
   //Conditional Rendering
   return listofRestaurants.length === 0 ? ( <Shimmer/>
@@ -52,7 +59,7 @@ const Body = () =>{
           onClick={() => {
             //Fiilter the restraunt cards and update the UI
             //search TEXT
-            console.log(searchText);
+            //console.log(searchText);
 
              const filteredRes = listofRestaurants.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
 
@@ -74,9 +81,16 @@ const Body = () =>{
             >
               Top Rated Restaurent
             </button>
-            <div><a href="http://localhost:8501/">
+            
+            {/* <label>UserName: </label>
+            <input className="border border-black mx-4" 
+            value={loggedInUser.userName}
+            onChange={(e) => setuserName(e.target.value)}></input> */}
+
+
+            {/* <div><a href="http://localhost:8501/">
     <button>Click Me!</button>
-</a></div>
+</a></div> */}
 
             <div><button><a></a></button></div>
 

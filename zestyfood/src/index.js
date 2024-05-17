@@ -1,4 +1,4 @@
-import React, { lazy , Suspense} from 'react';
+import React, { lazy , Suspense, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 //import App from './App';
@@ -6,15 +6,18 @@ import './index.css';
 // import ReactDOM from "react-dom";
 import './App.css';
 import Header from "./Components/Header";
-import About from "./Components/About";
-//import Restaurentcard from "./Components/Restaurentcard";
 import Body from "./Components/Body";
-import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
+//import About from "./Components/About";
+//import Restaurentcard from "./Components/Restaurentcard";
 import Contact from './Contact';
 import Error from './Components/Error';
 import RestaurantMenu from './Components/RestaurantMenu';
+import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
+import UserContext from './utils/UserContext';
 //import Grocery from './Components/Grocery';
-
+import {Provider} from "react-redux"
+import appStore from './utils/appStore';
+import Cart from './Components/Cart';
 
 //Chunking
 //Code Splitting
@@ -23,6 +26,7 @@ import RestaurantMenu from './Components/RestaurantMenu';
 //On demnad Loading
 
 const Grocery = lazy(()=> import('./Components/Grocery'))//funtion given by react
+const About = lazy(() => import ('./Components/About'))
 
 /* 
 =Header
@@ -43,12 +47,25 @@ const Grocery = lazy(()=> import('./Components/Grocery'))//funtion given by reac
 //i want to push my childer to the body
 //with the help of outlet we can our childern path will find ki header k bad kya jana ahai
 const Applayout= ()=>{
+  const[userName, setuserName]=useState();
+
+  useEffect(()=> {
+    const data={
+      name:"zeeshan",
+    };
+    setuserName(data.name);
+  },[]);
+
   return(
+    <Provider store={appStore}>
+    <UserContext.Provider value={{loggedInUser:userName, setuserName}}>
     <div className="app">
      <Header/>
      <Outlet/>
      
     </div>
+    </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -75,8 +92,12 @@ const appRouter=createBrowserRouter([
       },
       {
         path:"/grocery",
-        element:<Suspense fallback={<h1>Loading....</h1>} ><Grocery/></Suspense> 
-      }
+        element:<Suspense fallback={<h1>Loading....</h1>} ><Grocery/></Suspense> ,
+      },
+      {
+        path:"/cart",
+        element:<Cart/>
+      },
     ],
     errorElement:<Error/>
   },

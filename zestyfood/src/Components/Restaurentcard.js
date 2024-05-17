@@ -1,8 +1,12 @@
 
+import { useContext } from "react";
 import { CDN_URL } from "../utils/Constant";
+import UserContext from "../utils/UserContext";
 
 const Restaurentcard = (props) =>{
     const {resData}=props;
+
+    const {data} = useContext(UserContext);
   
      const{cloudinaryImageId,name,cuisines,avgRating,costForTwo,sla}= resData?.info;
   
@@ -16,6 +20,7 @@ const Restaurentcard = (props) =>{
         <h4>{avgRating} starts</h4>
         <h4>{costForTwo}</h4>
         <h4>{sla.deliveryTime} min</h4>
+       {/* // <h4>user:data </h4> */}
       </div>
     );
   };

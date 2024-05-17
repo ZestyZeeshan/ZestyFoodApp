@@ -1,13 +1,25 @@
-import { useEffect, useState } from "react";
+
 import { LOGO_URL } from "../utils/Constant";
+import { useEffect, useState,useContext } from "react";
 import { Link } from 'react-router-dom';
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header=()=>{
 
   const [BtnNameReact, setBtnNameReact] =useState("Login");
 
   const onlineStatus = useOnlineStatus();
+
+  const {loggedInUser} = useContext(UserContext);
+  console.log(loggedInUser);
+
+//selectors - its a hook
+//hook is normal js function
+//useselector give access to our store
+const cartItems = useSelector((store) => store.cart.items);
+
 
   console.log("Header Render");
   useEffect(()=>{
@@ -33,7 +45,8 @@ const Header=()=>{
             </Link></li>
             <li className="px-5"><Link to="/About">About Us</Link></li>
             <li className="px-5"><Link to="/">Home</Link></li>
-            <li className="px-5"><Link to="/Error">Cart</Link></li>
+            
+            <li className="px-5 font-bold text-xl"><Link to= "/cart">Cart-({cartItems.length}items)</Link></li>
             <button className="login" onClick={
               ()=>{
                 BtnNameReact === "Login"
@@ -43,6 +56,9 @@ const Header=()=>{
             }>
               {BtnNameReact}
             </button>
+
+            <li className="px-5 font-bold">{loggedInUser}</li>
+
           </ul>
        
   
