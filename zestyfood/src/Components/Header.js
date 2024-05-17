@@ -28,10 +28,10 @@ const cartItems = useSelector((store) => store.cart.items);
 
 
     return(
-      <div className="flex justify-between bg-pink-100 shadow-md ">
+      <div className="flex justify-between bg-green-100 shadow-md ">
         <div className="logocontainer">
           
-        <img className="w-56" src={LOGO_URL}alt="logo"/> 
+        <img className="rounded-full w-24 h-24 m-2 " src={LOGO_URL}alt="logo"/> 
         
         </div>
         <div className="flex items-center ">

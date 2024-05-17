@@ -9,7 +9,7 @@ import Header from "./Components/Header";
 import Body from "./Components/Body";
 //import About from "./Components/About";
 //import Restaurentcard from "./Components/Restaurentcard";
-import Contact from './Contact';
+import Contact from './Components/Contact';
 import Error from './Components/Error';
 import RestaurantMenu from './Components/RestaurantMenu';
 import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
