@@ -17,7 +17,7 @@ const Restaurentcard = (props) =>{
         <img className="rounded-lg h-64" alt="res-logo" src={CDN_URL + resData.info.cloudinaryImageId } />
         <h3 className="font-bold py-4 text-lg">{name}</h3>
         <h4 className="cuisines_list">{cuisines.join(", ")}</h4>
-        <h4>{avgRating} starts</h4>
+        <h4>{avgRating} stars</h4>
         <h4>{costForTwo}</h4>
         <h4>{sla.deliveryTime} min</h4>
        {/* // <h4>user:data </h4> */}
