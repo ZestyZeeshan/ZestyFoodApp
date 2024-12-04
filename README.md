@@ -3,7 +3,7 @@ this is how oure webpage looks like , please enable extension of CORS
 https://zestyfood.netlify.app/
 
 #Home page
-![Screenshot 2024-05-22 152845](![image](https://github.com/user-attachments/assets/61491679-f1aa-4e3e-9d1f-5026cb54382c)
+(![image](https://github.com/user-attachments/assets/61491679-f1aa-4e3e-9d1f-5026cb54382c)
 )
 
 #Search Bar to filter particular Items like Pizza and burgers
