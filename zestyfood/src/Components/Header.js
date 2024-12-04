@@ -23,10 +23,10 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 shadow-lg">
-      {/* Main container to hold logo and navigation */}
-      <div className="flex justify-between items-center max-w-7xl mx-auto p-4 text-white">
-        
+    // Header with a soothing gradient and box shadow
+    <div className="bg-gradient-to-r from-yellow-100 via-pink-100 to-pink-200 shadow-md sticky top-0 z-50">
+      {/* Main container for logo and navigation */}
+      <div className="flex justify-between items-center max-w-7xl mx-auto p-4 text-gray-700">
         {/* Logo Section */}
         <div className="logocontainer">
           <img
@@ -38,37 +38,40 @@ const Header = () => {
 
         {/* Navigation Links Section */}
         <div>
-          {/* Navigation links styled with hover effects */}
           <ul className="flex items-center space-x-6 font-medium">
-            {/* Show online status with dynamic colors */}
+            {/* Online status indicator */}
             <li>
               Online Status:{" "}
-              <span className={onlineStatus ? "text-green-400" : "text-red-400"}>
+              <span
+                className={`${
+                  onlineStatus ? "text-green-500" : "text-red-500"
+                } font-semibold`}
+              >
                 {onlineStatus ? "✅" : "❌"}
               </span>
             </li>
 
-            {/* Links to other pages */}
-            <li className="hover:text-yellow-400 transition duration-300">
+            {/* Navigation Links */}
+            <li className="hover:text-gray-900 transition duration-300">
               <Link to="/">Home</Link>
             </li>
-            <li className="hover:text-yellow-400 transition duration-300">
+            <li className="hover:text-gray-900 transition duration-300">
               <Link to="/About">About Us</Link>
             </li>
-            <li className="hover:text-yellow-400 transition duration-300">
+            <li className="hover:text-gray-900 transition duration-300">
               <Link to="/Contact">Contact Us</Link>
             </li>
 
-            {/* Dynamic cart item count */}
-            <li className="font-bold text-lg hover:text-yellow-400">
+            {/* Dynamic Cart Item Count */}
+            <li className="font-bold text-gray-700 hover:text-gray-900 transition duration-300">
               <Link to="/cart">Cart ({cartItems.length} items)</Link>
             </li>
 
             {/* Button to toggle Login/Logout state */}
             <button
-              className="bg-yellow-500 text-blue-900 px-4 py-2 rounded-lg hover:bg-yellow-400 transition duration-300"
+              className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg border border-black hover:bg-gray-400 hover:text-gray-900 transition duration-300"
+
               onClick={() => {
-                // Toggle button name between Login and Logout
                 BtnNameReact === "Login"
                   ? setBtnNameReact("Logout")
                   : setBtnNameReact("Login");
@@ -77,7 +80,7 @@ const Header = () => {
               {BtnNameReact}
             </button>
 
-            {/* Display the name of the logged-in user */}
+            {/* Display Logged-In User */}
             <li className="px-5 font-medium">{loggedInUser}</li>
           </ul>
         </div>
@@ -87,6 +90,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
 

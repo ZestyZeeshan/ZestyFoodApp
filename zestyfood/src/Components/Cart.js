@@ -55,10 +55,6 @@ const Cart = () => {
 export default Cart;
 
 
-
-
-
-
 // OLD CODE 
 
 

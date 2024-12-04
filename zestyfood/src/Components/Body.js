@@ -10,21 +10,17 @@ const Body = () => {
   const [searchText, setsearchText] = useState("");
   const RestaurentcardPromoted = withPromoted(Restaurentcard);
 
-  console.log("Body render");
-
-  // Fetch data when component mounts
+  // Fetch restaurant data on initial render
   useEffect(() => {
     fetchData();
   }, []);
 
-  // Fetch restaurant data from API
   const fetchData = async () => {
     try {
       const data = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65420&lng=77.23730&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
-
       const restaurants =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants || [];
@@ -35,29 +31,37 @@ const Body = () => {
     }
   };
 
-  // Check online status
   const onlineStatus = useOnlineStatus();
-  if (!onlineStatus)
-    return <h1 className="text-center text-red-500">Please connect to the internet</h1>;
 
-  // Conditional Rendering
+  // Show offline message if user is not connected to the internet
+  if (!onlineStatus)
+    return (
+      <h1 className="text-center text-red-500 mt-4">
+        Please connect to the internet
+      </h1>
+    );
+
+  // Render Shimmer loader while data is loading
   return listofRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      {/* Search and Filter Section */}
-      <div className="filter flex justify-between items-center bg-gray-50 p-4 shadow-md">
-        {/* Search Bar */}
-        <div className="search">
-          <input
-            type="text"
-            className="border border-gray-400 p-2 rounded-lg"
-            placeholder="Search for restaurants..."
-            value={searchText}
-            onChange={(e) => setsearchText(e.target.value)}
-          />
+    <div className="min-h-screen bg-gray-100 p-4">
+      {/* Filter Section */}
+      <div className="max-w-7xl mx-auto mb-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          {/* Search Bar */}
+          <div className="flex-grow">
+            <input
+              type="text"
+              placeholder="Search restaurants..."
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              value={searchText}
+              onChange={(e) => setsearchText(e.target.value)}
+            />
+          </div>
+          {/* Search Button */}
           <button
-            className="ml-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
             onClick={() => {
               const filteredRes = listofRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -67,12 +71,9 @@ const Body = () => {
           >
             Search
           </button>
-        </div>
-
-        {/* Top Rated Filter */}
-        <div className="search">
+          {/* Top Rated Button */}
           <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
             onClick={() => {
               const filteredList = listofRestaurants.filter(
                 (restaurant) => restaurant.info.avgRating > 4
@@ -80,24 +81,26 @@ const Body = () => {
               setFilteredRestaurants(filteredList);
             }}
           >
-            Top Rated Restaurants
+            Top Rated
           </button>
         </div>
       </div>
 
-      {/* Restaurant Cards */}
-      <div className="flex flex-wrap justify-center p-4">
+      {/* Restaurant Cards Section */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={`/restaurants/${restaurant.info.id}`}
-            className="m-4"
+            className="block"
           >
-            {restaurant.info.Promoted ? (
-              <RestaurentcardPromoted resData={restaurant} />
-            ) : (
-              <Restaurentcard resData={restaurant} />
-            )}
+            <div className="p-4 border border-gray-200 rounded-md shadow-md bg-white hover:shadow-lg transition">
+              {restaurant.info.Promoted ? (
+                <RestaurentcardPromoted resData={restaurant} />
+              ) : (
+                <Restaurentcard resData={restaurant} />
+              )}
+            </div>
           </Link>
         ))}
       </div>
@@ -106,6 +109,11 @@ const Body = () => {
 };
 
 export default Body;
+
+
+
+
+
 
 
 ////////////////////////////////////////////////////////////

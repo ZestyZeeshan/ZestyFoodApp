@@ -1,7 +1,7 @@
 const Error = ()=>{
     return (
         <div>
-            <h1>Error aya hai guys</h1>
+            <h1>Oops ! kindly Refresh it .</h1>
         </div>
     )
 }
