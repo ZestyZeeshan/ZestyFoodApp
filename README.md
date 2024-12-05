@@ -1,6 +1,6 @@
 
 this is how oure webpage looks like , please enable extension of CORS
-https://zestyfood.netlify.app/
+[https://zestyfood.netlify.app/](https://zesty-hunger-junction.netlify.app/)
 
 #Home page
 (![image](https://github.com/user-attachments/assets/61491679-f1aa-4e3e-9d1f-5026cb54382c)
